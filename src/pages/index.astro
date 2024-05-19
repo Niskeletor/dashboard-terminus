@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card/index.astro";
+import CardContent from "../components/Card/CardContent.astro";
 import IntroCard from "../components/IntroCard.astro";
 import ContactsCard from "../components/ContactsCard.astro";
 import TimeZone from "../components/TimeZoneCard.astro";
@@ -42,7 +43,12 @@ import PomodoroComponent from "../components/tools/Pomodoro";
     <IntroCard />
     <AboutMe />
     <ContactsCard />
-    <TimeZone />
+    <CardContent
+      colSpan="md:col-span-2"
+      rowSpan="md:row-span-2 flex gap-4"
+    >
+    <PomodoroComponent client:load />
+  </CardContent>
     <Now />
     <Card
       colSpan="md:col-span-1"
@@ -55,11 +61,12 @@ import PomodoroComponent from "../components/tools/Pomodoro";
         <Globe client:load />
       </div>
     </Card>
-    <Card
+    <CardContent
       colSpan="md:col-span-1"
       rowSpan="md:row-span-2 flex gap-4"
-      
-    />
+    >
+    <PomodoroComponent client:load />
+  </CardContent>
     <Card colSpan="md:col-span-1" rowSpan="md:row-span-1">
       <p class="text-xs">
         © 2024 · Crafted with ♥️ using <a
@@ -71,5 +78,5 @@ import PomodoroComponent from "../components/tools/Pomodoro";
     </Card>
     
   </main>
-  <PomodoroComponent client:load />
+  
 </Layout>

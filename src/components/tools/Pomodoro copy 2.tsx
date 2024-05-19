@@ -95,14 +95,14 @@ const PomodoroComponent = () => {
 
   return (
     <div class={`container ${isSessionRunning() ? "session" : isBreakRunning() ? "break" : ""}`}>
-      <div class="status-box">
+      <div class="row text-center status-box">
         <div id="status">{isSessionRunning() ? "Session" : isBreakRunning() ? "Break" : "Off"}</div>
       </div>
-      <div class="timers">
+      <div class="row text-center">
         <div id="session-timer">{formatTime(sessionSecondsLeft())}</div>
         <div id="break-timer">{formatTime(breakSecondsLeft())}</div>
       </div>
-      <div class="sliders">
+      <div class="row text-center">
         <div class="slider-box">
           <label for="session-slider">Session: {sessionLength()} min</label>
           <input
@@ -128,26 +128,22 @@ const PomodoroComponent = () => {
           />
         </div>
       </div>
-      <div class="buttons-row">
-        <button class="btn btn-success" onClick={startSessionTimer} disabled={isSessionRunning() || isBreakRunning()}>Start</button>
-        <button class="btn btn-danger" onClick={pauseSessionTimer} disabled={!isSessionRunning()}>Pause</button>
-        <button class="btn btn-warning" onClick={resetTimers}>Reset</button>
+      <div class="row buttons-row text-center">
+        <div class="col-xs-6">
+          <button class="btn btn-success" onClick={startSessionTimer} disabled={isSessionRunning() || isBreakRunning()}>Start</button>
+          <button class="btn btn-danger" onClick={pauseSessionTimer} disabled={!isSessionRunning()}>Pause</button>
+          <button class="btn btn-warning" onClick={resetTimers}>Reset</button>
+        </div>
       </div>
       <style>
         {`
           .container {
             font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
             color: white;
-            padding: 5px;
+            padding: 10px;
             transition: background-color 0.5s ease;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
           }
           .container.session {
             background-color: #2c003e;
@@ -157,69 +153,60 @@ const PomodoroComponent = () => {
             background-color: #004e63;
             background-image: radial-gradient(ellipse closest-side at center, #008b8b 2%, #004e63 100%);
           }
-          .status-box {
-            margin-bottom: 2px;
+          .text-center {
             text-align: center;
+          }
+          .status-box {
+            margin-top: 10px;
           }
           #status {
             color: #ffffff;
             font-family: 'Raleway', sans-serif;
-            font-size: 12px;
+            font-size: 24px;
             font-weight: 800;
-            margin: 0;
+            margin: 0 0 12px;
             text-transform: uppercase;
             text-shadow: 0px 1px 0px #FFF, 0px -1px 0px #000;
           }
-          .timers {
-            margin-bottom: 2px;
-            text-align: center;
-          }
           #session-timer, #break-timer {
-            font-size: 14px;
+            margin-bottom: 10px;
+            font-size: 20px;
             text-shadow: #fff 0px 1px 0, #000 0 -1px 0;
-            letter-spacing: 1px;
-          }
-          .sliders {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 5px;
-          }
-          .slider-box {
-            flex: 1;
-            margin: 2px;
-            text-align: center;
-          }
-          label {
-            display: block;
-            margin-bottom: 2px;
-            font-size: 10px;
-          }
-          input[type="range"] {
-            width: 100%;
+            letter-spacing: 2px;
           }
           .buttons-row {
-            margin-top: 2px;
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
+            margin-top: 10px;
           }
           .btn {
-            padding: 3px 5px;
-            font-size: 10px;
-            margin: 0;
+            padding: 5px 10px;
+            margin: 5px;
+            font-size: 12px;
           }
           .btn-success {
             background-color: #28a745;
             border-color: #28a745;
+            border-radius: 8px;
           }
           .btn-danger {
             background-color: #dc3545;
             border-color: #dc3545;
+            border-radius: 8px;
           }
           .btn-warning {
             background-color: #ffc107;
             border-color: #ffc107;
+            border-radius: 8px;
+          }
+          .slider-box {
+            margin: 10px 0;
+          }
+          label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+          }
+          input[type="range"] {
+            width: 100%;
           }
         `}
       </style>
